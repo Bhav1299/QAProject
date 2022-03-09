@@ -116,7 +116,5 @@ public class StuExams {
 				+ ", result=" + result + ", grade=" + grade + "]";
 	}
 	
-	
-	
 
 }

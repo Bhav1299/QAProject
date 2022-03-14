@@ -5,10 +5,15 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
+
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import com.qa.finalproject.domain.StuExDTO;
 import com.qa.finalproject.domain.StuExams;
@@ -17,23 +22,50 @@ import com.qa.finalproject.service.StuExService;
 
 @SpringBootTest
 public class ControllerTest {
-	
+
 	@MockBean
 	private StuExService service;
-	
+
 	@Autowired
 	private Controller controller;
+
+	@Test
+	void createTest() {
+		StuExams TEST_ASSIGNEE = new StuExams(4L, "Porter", "Corter", "maths", 99, "A*");
+		StuExams TEST_DTO = new StuExams(TEST_ASSIGNEE.getId(), TEST_ASSIGNEE.getFirst(), TEST_ASSIGNEE.getLast(),
+				TEST_ASSIGNEE.getSubject(), TEST_ASSIGNEE.getResult(), TEST_ASSIGNEE.getGrade());
+
+		when(this.service.create(TEST_ASSIGNEE)).thenReturn(TEST_ASSIGNEE);
+
+		ResponseEntity<StuExams> result = this.controller.createMap(TEST_DTO);
+
+		Assertions.assertThat(result).isEqualTo(new ResponseEntity<StuExams>(TEST_ASSIGNEE, HttpStatus.CREATED));
+	}
+
+	@Test
+	void readAllTest() {
+		StuExams TESTA = new StuExams(1L, "Jane", "John", "Maths", 99, "A*");
+		StuExams TESTB = new StuExams(2L, "gane", "gohn", "Maths", 98, "A*");
+		StuExams TESTC = new StuExams(3L, "fane", "fohn", "Maths", 97, "A*");
+		List<StuExams> stuList = List.of(TESTA, TESTB, TESTC);
+
+		when(this.service.readAll()).thenReturn(stuList);
+
+		ResponseEntity<List<StuExams>> result = this.controller.readAll();
+
+		Assertions.assertThat(result).isEqualTo(ResponseEntity.ok(stuList));
+	}
 	
 	@Test
-	public void testCreate() {
-		StuExams testStuEx = new StuExams(1L, "Tester", "Tests", "Maths", 99, "A*");
-		StuExDTO expected = new StuExDTO(testStuEx.getId(), testStuEx.getFirst(), testStuEx.getLast(), testStuEx.getSubject(), testStuEx.getResult(), testStuEx.getGrade());
-		
-		when(service.create(testStuEx)).thenReturn(testStuEx);
-		
-		assertThat(testStuEx).isEqualTo(controller.createMap(testStuEx));
-		
-		verify(service, times(1)).create(testStuEx);
+	void readStuExTest() {
+		Long id = 1L;
+		StuExams TEST_DTO = new StuExams(id, "man", "woman", "maths", 99, "A*");
+
+		when(this.service.readStuEx(id)).thenReturn(TEST_DTO);
+
+		ResponseEntity<StuExams> result = this.controller.readStuEx(id);
+
+		Assertions.assertThat(result).isEqualTo(ResponseEntity.ok(TEST_DTO));
 	}
 
 }

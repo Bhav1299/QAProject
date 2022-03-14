@@ -1,0 +1,10 @@
+insert into stu_exams values(0, 'TesterA', 'Test', 'Maths', 99, 'A*');
+insert into stu_exams values(1, 'TesterB', 'Test2', 'Biology', 77, 'B');
+insert into stu_exams values(2, 'TesterC', 'Test3', 'Chemistry', 67, 'C');
+insert into stu_exams values(3, 'TesterC', 'Test3', 'Biology', 63, 'C');
+insert into stu_exams values(4, 'TesterA', 'Test', 'Chemistry', 89, 'A');
+insert into stu_exams values(5, 'TesterA', 'Test', 'Biology', 98, 'A*');
+insert into stu_exams values(6, 'TesterB', 'Test2', 'Chemistry', 79, 'B');
+insert into stu_exams values(7, 'TesterB', 'Test2', 'Maths', 84, 'A');
+insert into stu_exams values(8, 'TesterC', 'Test3', 'Maths', 71, 'B');
+insert into stu_exams values(9, 'TesterD', 'Test4', 'Maths', 100, 'A*^');

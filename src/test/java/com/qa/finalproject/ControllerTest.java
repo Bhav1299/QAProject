@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import com.qa.finalproject.domain.StuExDTO;
 import com.qa.finalproject.domain.StuExams;
 import com.qa.finalproject.rest.Controller;
 import com.qa.finalproject.service.StuExService;
@@ -26,6 +27,7 @@ public class ControllerTest {
 	@Test
 	public void testCreate() {
 		StuExams testStuEx = new StuExams(1L, "Tester", "Tests", "Maths", 99, "A*");
+		StuExDTO expected = new StuExDTO(testStuEx.getId(), testStuEx.getFirst(), testStuEx.getLast(), testStuEx.getSubject(), testStuEx.getResult(), testStuEx.getGrade());
 		
 		when(service.create(testStuEx)).thenReturn(testStuEx);
 		

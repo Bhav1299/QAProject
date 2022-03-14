@@ -14,7 +14,7 @@ public class StuExams {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private long id;
+	private Long id;
 	
 	@Column
 	private String first;
@@ -123,7 +123,7 @@ public class StuExams {
 
 	@Override
 	public String toString() {
-		return "StuExams [id=" + id + ", firstName=" + first + ", lastName=" + last + ", subject=" + subject
+		return "StuExams [id=" + id + ", first=" + first + ", last=" + last + ", subject=" + subject
 				+ ", result=" + result + ", grade=" + grade + "]";
 	}
 	

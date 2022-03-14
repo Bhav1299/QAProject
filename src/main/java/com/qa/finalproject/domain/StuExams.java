@@ -2,6 +2,7 @@ package com.qa.finalproject.domain;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,32 +13,42 @@ public class StuExams {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private long id;
 	
-	private String firstName;
-	private String lastName;
+	@Column
+	private String first;
+	
+	@Column
+	private String last;
+	
+	@Column
 	private String subject;
+	
+	@Column
 	private int result;
+	
+	@Column
 	private String grade;
 	
 	public StuExams() {
 		super();
 	}
 	
-	public StuExams(String firstName, String lastName, String subject, int result, String grade) {
+	public StuExams(String first, String grade, String last, int result, String subject) {
 		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.first = first;
+		this.last = last;
 		this.subject = subject;
 		this.result = result;
 		this.grade = grade;
 	}
 	
-	public StuExams(long id, String firstName, String lastName, String subject, int result, String grade) {
+	public StuExams(long id, String first, String last, String subject, int result, String grade) {
 		super();
 		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.first = first;
+		this.last = last;
 		this.subject = subject;
 		this.result = result;
 		this.grade = grade;
@@ -51,20 +62,20 @@ public class StuExams {
 		this.id = id;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getFirst() {
+		return first;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirst(String first) {
+		this.first = first;
 	}
 
-	public String getLastName() {
-		return lastName;
+	public String getLast() {
+		return last;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+	public void setLast(String last) {
+		this.last = last;
 	}
 
 	public String getSubject() {
@@ -93,7 +104,7 @@ public class StuExams {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(firstName, grade, id, lastName, result, subject);
+		return Objects.hash(first, grade, id, last, result, subject);
 	}
 
 	@Override
@@ -105,14 +116,14 @@ public class StuExams {
 		if (getClass() != obj.getClass())
 			return false;
 		StuExams other = (StuExams) obj;
-		return Objects.equals(firstName, other.firstName) && Objects.equals(grade, other.grade) && id == other.id
-				&& Objects.equals(lastName, other.lastName) && result == other.result
+		return Objects.equals(first, other.first) && Objects.equals(grade, other.grade) && id == other.id
+				&& Objects.equals(last, other.last) && result == other.result
 				&& Objects.equals(subject, other.subject);
 	}
 
 	@Override
 	public String toString() {
-		return "StuExams [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", subject=" + subject
+		return "StuExams [id=" + id + ", firstName=" + first + ", lastName=" + last + ", subject=" + subject
 				+ ", result=" + result + ", grade=" + grade + "]";
 	}
 	

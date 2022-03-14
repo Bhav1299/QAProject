@@ -1,5 +1,8 @@
 package com.qa.finalproject.rest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,14 +15,15 @@ public class Controller {
 	
 	private StuExService service;
 
+	@Autowired
 	public Controller(StuExService service) {
 		super();
 		this.service = service;
 	}
 	
 	@PostMapping("/Create")
-	public StuExams createMap(@RequestBody StuExams stuex) {
-		return this.service.create(stuex);
+	public ResponseEntity<StuExams> createMap(@RequestBody StuExams stuex) {
+		return new ResponseEntity<>(this.service.create(stuex), HttpStatus.CREATED);
 	}
 
 }

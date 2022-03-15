@@ -7,6 +7,10 @@ import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.qa.finalproject.domain.StuExDTO;
 import com.qa.finalproject.domain.StuExams;
@@ -25,8 +29,8 @@ public class StuExService {
 		this.mapper = mapper;
 	}
 
-	private StuExDTO mapToDto(StuExams stuex) {
-		return this.mapper.map(stuex, StuExDTO.class);
+	private StuExams mapToDto(StuExams stuex) {
+		return this.mapper.map(stuex, StuExams.class);
 	}
 
 	public StuExams create(StuExams stuex) {
@@ -44,4 +48,32 @@ public class StuExService {
 		return requestedStuEx.get();
 	}
 
+	public boolean delete(long id) {
+		Optional<StuExams> existingOptional = this.repo.findById(id);
+		if (existingOptional.isPresent()) {
+			this.repo.deleteById(id);
+			return !(this.repo.existsById(id));
+		}
+		return false;
+	}
+
+	@RequestMapping(value = "/Delete", method = RequestMethod.DELETE)
+	@ResponseBody
+	public boolean deleteAll() {
+		this.repo.deleteAll();
+		return true;
+	}
+	
+	@Transactional
+	public StuExams update(Long id, StuExams stuex) {
+		Optional<StuExams> oc = this.repo.findById(id);
+		StuExams existing = oc.get();
+
+		existing.setFirst(stuex.getFirst());
+		existing.setLast(stuex.getLast());
+		existing.setSubject(stuex.getSubject());
+		existing.setResult(stuex.getResult());
+		existing.setGrade(stuex.getGrade());
+		return this.repo.save(existing);
+	}
 }

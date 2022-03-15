@@ -15,7 +15,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.qa.finalproject.domain.StuExDTO;
 import com.qa.finalproject.domain.StuExams;
 import com.qa.finalproject.rest.Controller;
 import com.qa.finalproject.service.StuExService;
@@ -55,7 +54,7 @@ public class ControllerTest {
 
 		Assertions.assertThat(result).isEqualTo(ResponseEntity.ok(stuList));
 	}
-	
+
 	@Test
 	void readStuExTest() {
 		Long id = 1L;
@@ -66,6 +65,58 @@ public class ControllerTest {
 		ResponseEntity<StuExams> result = this.controller.readStuEx(id);
 
 		Assertions.assertThat(result).isEqualTo(ResponseEntity.ok(TEST_DTO));
+	}
+
+	@Test
+	void removeStuEx() {
+		long id = 1L;
+		when(this.service.delete(id)).thenReturn(true);
+
+		ResponseEntity<Object> result = this.controller.removeStuEx(id);
+
+		Assertions.assertThat(result).isEqualTo(new ResponseEntity<>(HttpStatus.NO_CONTENT));
+	}
+
+	@Test
+	void removeStuExUnsuccessful() {
+		long id = 1L;
+		when(this.service.delete(id)).thenReturn(false);
+
+		ResponseEntity<Object> result = this.controller.removeStuEx(id);
+
+		Assertions.assertThat(result).isEqualTo(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+	}
+
+	@Test
+	void removeStuExamsTest() {
+		when(this.service.deleteAll()).thenReturn(false);
+
+		ResponseEntity<Object> result = this.controller.removeStuExams();
+
+		Assertions.assertThat(result).isEqualTo(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
+	}
+
+	@Test
+	void updateAssigneeTest() {
+		Long id = 1L;
+		StuExams TEST_ASSIGNEE_UPDATE = new StuExams(id, "Tester", "Test", "Maths", 99, "A*");
+		StuExams TEST_DTO_UPDATE = new StuExams(id, TEST_ASSIGNEE_UPDATE.getFirst(), TEST_ASSIGNEE_UPDATE.getLast(),
+				TEST_ASSIGNEE_UPDATE.getSubject(), TEST_ASSIGNEE_UPDATE.getResult(), TEST_ASSIGNEE_UPDATE.getGrade());
+
+		when(this.service.update(id, TEST_ASSIGNEE_UPDATE)).thenReturn(TEST_DTO_UPDATE);
+
+		ResponseEntity<StuExams> result = this.controller.updateStuEx(id, TEST_ASSIGNEE_UPDATE);
+
+		Assertions.assertThat(result).isEqualTo(new ResponseEntity<StuExams>(TEST_DTO_UPDATE, HttpStatus.ACCEPTED));
+	}
+	
+	@Test
+	void removeStuExamsUnsuccessful() {
+		when(this.service.deleteAll()).thenReturn(false);
+
+		ResponseEntity<Object> result = this.controller.removeStuExams();
+
+		Assertions.assertThat(result).isEqualTo(new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR));
 	}
 
 }

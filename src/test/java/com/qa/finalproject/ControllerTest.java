@@ -15,7 +15,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.qa.finalproject.domain.StuExDTO;
 import com.qa.finalproject.domain.StuExams;
 import com.qa.finalproject.rest.Controller;
 import com.qa.finalproject.service.StuExService;

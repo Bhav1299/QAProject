@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.qa.finalproject.domain.StuExDTO;
 import com.qa.finalproject.domain.StuExams;
 import com.qa.finalproject.repository.StuExamsInt;
 import com.qa.finalproject.service.StuExService;

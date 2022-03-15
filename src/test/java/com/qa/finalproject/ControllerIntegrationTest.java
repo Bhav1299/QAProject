@@ -24,7 +24,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.qa.finalproject.domain.StuExDTO;
 import com.qa.finalproject.domain.StuExams;
 import com.qa.finalproject.service.StuExService;
 

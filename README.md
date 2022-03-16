@@ -116,7 +116,7 @@ Jira : https://bk12.atlassian.net/jira/software/projects/QPR/boards/2/backlog
 ![Screenshot 2022-03-16 at 13 03 32](https://user-images.githubusercontent.com/97600800/158596159-63ee2922-9ba7-463f-8903-5dc4788a8338.png)
 
 ###Extra Information
-For the project you will need: Java, Springboot, Eclipse IDE, MySQL, Maven, h2.
+For the project you will need: Java, Springboot, Eclipse IDE, MySQL, Maven, h2, Postman.
 The pom.xml file has the dependancies.
 The target folder in the repo contains the .jar build for the project.
 

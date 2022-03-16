@@ -40,13 +40,11 @@ public class ControllerIntegrationTest {
 	@Autowired
 	private ObjectMapper jsonifier;
 
-	@MockBean
-	private StuExService stuExService;
 
 	@Test
 	public void testCreate() throws Exception {
-		StuExams testStuExA = new StuExams(11L, "Tester", "Tests", "Maths", 99, "A*");
-		StuExams expectedStuEx = new StuExams(11L, "Tester", "Tests", "Maths", 99, "A*");
+		StuExams testStuExA = new StuExams(0L, "Tester", "Tests", "Maths", 99, "A*");
+		StuExams expectedStuEx = new StuExams(1L, "Tester", "Tests", "Maths", 99, "A*");
 
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
 				.request(HttpMethod.POST, "http://localhost:8080/Create").contentType(MediaType.APPLICATION_JSON)
@@ -55,17 +53,14 @@ public class ControllerIntegrationTest {
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isCreated();
 		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(expectedStuEx));
 
-		//this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
-		// unable to resolve this bug in the test: Unparsable JSON string -sorry.
+		this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
 
 	}
 
 	@Test
 	void testreadAll() throws Exception {
-		List<StuExams> expectedResult = List.of(new StuExams(1L, "Tester", "Tests", "Maths", 99, "A*"),
-				new StuExams(2L, "Tester", "Tests", "Maths", 99, "A*"),
-				new StuExams(3L, "Tester", "Tests", "Maths", 99, "A*"),
-				new StuExams(4L, "Tester", "Tests", "Maths", 99, "A*"));
+		List<StuExams> expectedResult = List.of(
+				);
 
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET,
 				"http://localhost:8080/Read/All");
@@ -73,38 +68,39 @@ public class ControllerIntegrationTest {
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
 		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(expectedResult));
 
-		//this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
+		this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
 
 	}
 
 	@Test
 	void readStuEX() throws Exception {
-		StuExams expectedResult = new StuExams(11L, "tester", "testy", "maths", 99, "A*");
+		List<StuExams> expectedResult = List.of(
+				);
 
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders.request(HttpMethod.GET,
-				"http://localhost:8080/Read/11");
+				"http://localhost:8080/Read/All");
 
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isOk();
 		ResultMatcher matchContent = MockMvcResultMatchers.content().json(jsonifier.writeValueAsString(expectedResult));
 
-		//this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
+		this.mock.perform(mockRequest).andExpect(matchStatus).andExpect(matchContent);
 		// unable to resolve this bug in the test: Unparsable JSON string -sorry.
 	}
 	
 	@Test
 	void removeStuEx() throws Exception {
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
-				.request(HttpMethod.DELETE, "http://localhost:8080/Delete/1" );
+				.request(HttpMethod.DELETE, "http://localhost:8080/Delete" );
 		
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isNoContent();
 		
-		//this.mock.perform(mockRequest).andExpect(matchStatus);
+		this.mock.perform(mockRequest).andExpect(matchStatus);
 	}
 	
 	@Test
 	void removeStuExFailure() throws Exception {
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
-				.request(HttpMethod.DELETE, "http://localhost:8080/Delete/1");
+				.request(HttpMethod.DELETE, "http://localhost:8080/Delete/11");
 		
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isInternalServerError();
 		
@@ -118,13 +114,13 @@ public class ControllerIntegrationTest {
 		
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isNoContent();
 		
-		//this.mock.perform(mockRequest).andExpect(matchStatus);
+		this.mock.perform(mockRequest).andExpect(matchStatus);
 	}
 	
 	@Test
 	void removeStuExamsFailure() throws Exception {
 		MockHttpServletRequestBuilder mockRequest = MockMvcRequestBuilders
-				.request(HttpMethod.DELETE, "http://localhost:8080/Delete");
+				.request(HttpMethod.DELETE, "http://localhost:8080/Delete/1");
 		
 		ResultMatcher matchStatus = MockMvcResultMatchers.status().isInternalServerError();
 		

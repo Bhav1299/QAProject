@@ -1,7 +1,7 @@
 # QAProject
-##Final Project by Bhavneesh Khosla
+## Final Project by Bhavneesh Khosla
 
-###Why are we doing this?
+### Why are we doing this?
 
 This project is a SpringBoot API with full CRUD functionality.
 
@@ -14,25 +14,27 @@ The datasource connection must be configured in the application-prod.properties 
 Jira was used for project management, Git for version source control and Github for remote repository.
 
 
-###How I expected the project to go?
+### How I expected the project to go?
 
 The project to create a fully functional CRUD API seemed like a tough challenge after only 8 weeks of coding. To design the create and delete functions seemed the easiest, whilst designing a good structure for the code and the update function seemed most difficult. I expected the project to be challenging at best.
 
 ###What went well?
 Designing the back-end was tricky, but it went well. All the features work. There are two user stories that did not get completed, these were both low priority and moved back to the project backlog. Unit testing went well and the postman requests work fine.
 
-###Even better if?
+### Even better if?
 
 I didn't manage to complete the low-level priority user stories to create a function to call one's results by their name and to call all student's results given a grade parameter.
 
-Unfortunately, I was unable to get my integration tests to work. The error message displayed on the last line of each test was the same: 'Unparsable JSON string;'.
-I tried to troubleshoot the data-test.sql file to see if that was causing the problem but it seemed like the root of the problem was elsewhere. 
-I've also tried troubleshooting using resources on the interent but I've been unable to find a solution that works or many that relate to the problem I have. 
-Given the time contraints and my limited knowledge at the time, I've commented the failed line, the tests all pass and this enables me to build my project.
-![Screenshot 2022-03-16 at 12 05 59](https://user-images.githubusercontent.com/97600800/158586361-0d21ca53-ed2a-4819-ba5b-dbae4b7d5458.png)
-![Screenshot 2022-03-16 at 12 06 11](https://user-images.githubusercontent.com/97600800/158586417-5ed333dc-34bc-4d16-9d83-b9750f57e6f9.png)
+Unfortunately, I was unable to get some of my integration tests to work. The error message displayed on the last line of each test was the same: 'No such elementException: No value present'.
+All the integration tests were difficult to carry out but I managed to do most of them.
+I had trouble with the Update method integration test;
+I tried to troubleshoot the data-test.sql file to see if that was causing the problem but it seemed like the root of the problem was elsewhere. I then tried exploring the problem further tracing back the Junit failure trace, however I was unable to discern the exact problem and where the unparseable JSON string is.
+I also tried troubleshooting using resources on the internet but I've been unable to find a solution that works or  that relate to the problem I have.
+This was my last test and given the time contraints and my limited knowledge at the time, I've commented the specific failed line, and this enables me to build my project.
+![Screenshot 2022-03-16 at 15 17 27](https://user-images.githubusercontent.com/97600800/158624718-4fa5f539-0bb2-47d7-8984-f38f8596210f.png)
 
-###Possible improvements for future revisions of the project
+
+### Possible improvements for future revisions of the project
 
 The first improvement is to create functioning integration tests by solving the error: Unparsable JSON string.
 
@@ -44,13 +46,13 @@ I would also imporve the API, by creating more functions that enable you to see 
 
 Another possible improvement would be to create a table for students details and then an associated table for results so that we can store students individually with a one to many relationship to the results table that stores the each result of each student. 
 
-###Package
+### Package
 
 ![Screenshot 2022-03-16 at 11 56 50](https://user-images.githubusercontent.com/97600800/158588382-f1c2c181-3eff-4f2e-ba9e-0bb73869d581.png)
 ![Screenshot 2022-03-16 at 11 57 01](https://user-images.githubusercontent.com/97600800/158588499-6177da0f-d8c8-4d17-b1f9-1e7916ae7592.png)
 
 
-###Paths
+### Paths
 Create student result  Post  /Create
 Read a student's result  Get  /Read/{id}
 Read all student's results  Get  /Read/All
@@ -58,7 +60,14 @@ Update a student's result  Put  /Update/{id}
 Delete a Student's result  Delete  /Delete/{id}
 Delete all student's results  Delete  /Delete
 
-###Postman Screenshots
+### Pre-Risk Assesment
+
+![Screenshot 2022-03-16 at 15 51 21](https://user-images.githubusercontent.com/97600800/158632043-85387950-ee09-4f1a-93c9-5b1d94bb615f.png)
+![Screenshot 2022-03-16 at 15 51 28](https://user-images.githubusercontent.com/97600800/158632297-d170dbeb-c06a-44ed-ba49-25f49864292e.png)
+![Screenshot 2022-03-16 at 15 51 32](https://user-images.githubusercontent.com/97600800/158632388-ca267b62-7de4-43f3-9f4e-4707e993ecdf.png)
+
+
+### Postman Screenshots
 
 Starting the application from the terminal
 ![Screenshot 2022-03-16 at 11 46 23](https://user-images.githubusercontent.com/97600800/158586545-ecb3b916-cb4d-4960-ad29-b2d3de830f30.png)
@@ -93,13 +102,13 @@ Proof of delete all
 Data persistance - I entered data for four entries and then used Workbench to show the table to show the data persisted
 ![Screenshot 2022-03-16 at 11 54 40](https://user-images.githubusercontent.com/97600800/158588154-9cb7de85-ef28-4511-8f5e-e7c2d3f084af.png)
 
-###Testing
+### Testing
 
 ![Screenshot 2022-03-16 at 11 58 25](https://user-images.githubusercontent.com/97600800/158588624-10b777d2-adc8-4be2-885b-fda154e63fc0.png)
-![Screenshot 2022-03-16 at 11 58 39](https://user-images.githubusercontent.com/97600800/158588661-4ffc20dc-c55b-46d3-85fb-219be06deca7.png)
+![Screenshot 2022-03-16 at 15 20 23](https://user-images.githubusercontent.com/97600800/158625316-9b503b30-19b1-470a-9d04-3cfaeab118ee.png)
 
 
-###Jira Link
+### Jira Link
 For Jira, I implemented user stories with sub-tasks as acceptance criteria to complete the user story. There are estimations using story points. I used MoSCoW prioritisation in the form of priorities in Jira: The highest/high priority user-stories are Must-Have's, the Medium are Should-Have's and the low/lowest are Could-Have's.
 The Could-Have's did not get complete during this sprint and is now in the backlog.
 ![Screenshot 2022-03-16 at 10 53 52](https://user-images.githubusercontent.com/97600800/158590150-4e98a5f7-cd7f-48ef-aa28-7ad399e6e463.png)
@@ -110,12 +119,14 @@ The Could-Have's did not get complete during this sprint and is now in the backl
 
 Jira : https://bk12.atlassian.net/jira/software/projects/QPR/boards/2/backlog
 
-###Risk Assesment
-![Screenshot 2022-03-16 at 13 03 07](https://user-images.githubusercontent.com/97600800/158596043-fc942255-0389-4bd6-a370-52eda1e6a405.png)
-![Screenshot 2022-03-16 at 13 03 22](https://user-images.githubusercontent.com/97600800/158596113-4b99d9da-b44e-45fe-9c4a-dd3f20dae3fc.png)
-![Screenshot 2022-03-16 at 13 03 32](https://user-images.githubusercontent.com/97600800/158596159-63ee2922-9ba7-463f-8903-5dc4788a8338.png)
+### Risk Assesment
+![Screenshot 2022-03-16 at 15 51 48](https://user-images.githubusercontent.com/97600800/158632544-5e32f620-236b-4510-bd50-a8dc22f3fa97.png)
+![Screenshot 2022-03-16 at 15 51 54](https://user-images.githubusercontent.com/97600800/158632613-43aa6299-91b9-4899-ae75-ef21e16857ae.png)
+![Screenshot 2022-03-16 at 15 52 01](https://user-images.githubusercontent.com/97600800/158632670-566d7c45-b6ed-4c39-9334-3b503f43fff5.png)
+![Screenshot 2022-03-16 at 15 52 06](https://user-images.githubusercontent.com/97600800/158632723-836f4695-9077-48c3-9c03-cf29522f9e8f.png)
 
-###Extra Information
+
+### Extra Information
 For the project you will need: Java, Springboot, Eclipse IDE, MySQL, Maven, h2, Postman.
 The pom.xml file has the dependancies.
 The target folder in the repo contains the .jar build for the project.

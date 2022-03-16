@@ -25,12 +25,14 @@ Designing the back-end was tricky, but it went well. All the features work. Ther
 
 I didn't manage to complete the low-level priority user stories to create a function to call one's results by their name and to call all student's results given a grade parameter.
 
-Unfortunately, I was unable to get my integration tests to work. The error message displayed on the last line of each test was the same: 'Unparsable JSON string;'.
-I tried to troubleshoot the data-test.sql file to see if that was causing the problem but it seemed like the root of the problem was elsewhere. 
-I've also tried troubleshooting using resources on the interent but I've been unable to find a solution that works or many that relate to the problem I have. 
-Given the time contraints and my limited knowledge at the time, I've commented the failed line, the tests all pass and this enables me to build my project.
-![Screenshot 2022-03-16 at 12 05 59](https://user-images.githubusercontent.com/97600800/158586361-0d21ca53-ed2a-4819-ba5b-dbae4b7d5458.png)
-![Screenshot 2022-03-16 at 12 06 11](https://user-images.githubusercontent.com/97600800/158586417-5ed333dc-34bc-4d16-9d83-b9750f57e6f9.png)
+Unfortunately, I was unable to get some of my integration tests to work. The error message displayed on the last line of each test was the same: 'No such elementException: No value present'.
+All the integration tests were difficult to carry out but I managed to do most of them.
+I had trouble with the Update method integration test;
+I tried to troubleshoot the data-test.sql file to see if that was causing the problem but it seemed like the root of the problem was elsewhere. I then tried exploring the problem further tracing back the Junit failure trace, however I was unable to discern the exact problem and where the unparseable JSON string is.
+I also tried troubleshooting using resources on the internet but I've been unable to find a solution that works or  that relate to the problem I have.
+This was my last test and given the time contraints and my limited knowledge at the time, I've commented the specific failed line, and this enables me to build my project.
+![Screenshot 2022-03-16 at 15 17 27](https://user-images.githubusercontent.com/97600800/158624718-4fa5f539-0bb2-47d7-8984-f38f8596210f.png)
+
 
 ###Possible improvements for future revisions of the project
 
@@ -96,7 +98,7 @@ Data persistance - I entered data for four entries and then used Workbench to sh
 ###Testing
 
 ![Screenshot 2022-03-16 at 11 58 25](https://user-images.githubusercontent.com/97600800/158588624-10b777d2-adc8-4be2-885b-fda154e63fc0.png)
-![Screenshot 2022-03-16 at 11 58 39](https://user-images.githubusercontent.com/97600800/158588661-4ffc20dc-c55b-46d3-85fb-219be06deca7.png)
+![Screenshot 2022-03-16 at 15 20 23](https://user-images.githubusercontent.com/97600800/158625316-9b503b30-19b1-470a-9d04-3cfaeab118ee.png)
 
 
 ###Jira Link
